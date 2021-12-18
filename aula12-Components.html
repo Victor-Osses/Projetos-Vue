@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando Componentes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <painel></painel>
+        <painel></painel>
+    </div>
+
+    <div id="app2">
+        <painel></painel>
+        <painel></painel>
+    </div>
+
+    <script>
+
+        Vue.component('painel', {
+            //Tem que ser uma function
+            data(){
+                return {
+                    titulo: 'Painel Notícias'
+                }
+            },
+            methods: {
+                alertarAlgumaCoisa(){
+                    this.titulo = "Alerta de alguma coisa";
+                }
+            },
+            //Só posso retornar um elemento html: colocar tudo dentro de uma div
+            template: 
+            `
+            <div>
+            <h1> {{titulo}} </h1>
+            <button @click="alertarAlgumaCoisa()">Alert</button>    
+            </div>
+            `
+        })
+
+        const app = new Vue({
+            el: "#app"
+        })
+
+        const app2 = new Vue({
+            el: "#app2"
+        })
+    </script>
+</body>
+</html>
