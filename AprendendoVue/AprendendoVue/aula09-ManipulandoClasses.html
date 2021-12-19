@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="red" checked>
+        Vermelho
+
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="blue">
+        Azul
+
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="green">
+        Verde
+
+        <input @click="corP($event.target.value)" type="radio" name="cor" value="yellow">
+        Amarelo
+
+        <p :class="classeParagrafo">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, mollitia. Earum,
+            minima a blanditiis itaque error aspernatur eum consectetur neque facere nostrum sapiente sunt porro
+            asperiores laboriosam iusto, cum optio!</p>
+
+        <br><br>
+        <button @click="vermelho(), vermelho2()">vermelho</button>
+        <button @click="verde(), verde2()">verde</button>
+        <button @click="incolor(), incolor2()">incolor</button>
+        <button @click="borda(), borda2()">borda</button>
+
+         <p :class="{red: colors.vermelho, green: colors.verde, borda: colors.borda}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, mollitia. Earum,
+            minima a blanditiis itaque error aspernatur eum consectetur neque facere nostrum sapiente sunt porro
+            asperiores laboriosam iusto, cum optio!</p>
+
+        <br>
+        <p>Lógica diferente para manipulação do style</p>
+        <p ref="firstParagraph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, mollitia. Earum,
+            minima a blanditiis itaque error aspernatur eum consectetur neque facere nostrum sapiente sunt porro
+            asperiores laboriosam iusto, cum optio!</p>
+    </div>
+
+    <style>
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .borda{
+            border: 1px solid black;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                classeParagrafo: 'red',
+                colors:{
+                    vermelho: true,
+                    verde: false,
+                    borda: false
+                }
+            },
+            methods: {
+                corP(cor) {
+                    this.classeParagrafo = cor
+                },
+                vermelho(){
+                    this.colors.vermelho = !this.colors.vermelho
+                    this.colors.verde = false
+                },
+                verde(){
+                    this.colors.vermelho = false
+                    this.colors.verde = !this.colors.verde
+                },
+                incolor(){
+                    this.colors.vermelho = false
+                    this.colors.verde = false
+                },
+                borda(){
+                    this.colors.borda =  !this.colors.borda
+                },
+                vermelho2(){
+                    this.$refs.firstParagraph.style.background = 'red'
+                },
+                verde2(){
+                    this.$refs.firstParagraph.style.background = 'green'
+                },
+                incolor2(){
+                    this.$refs.firstParagraph.style = ''
+                },
+                borda2(){
+                    this.$refs.firstParagraph.style.border = '1px solid black'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
