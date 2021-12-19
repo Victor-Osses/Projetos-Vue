@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instanciando classes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- <button onclick="imprimir()">
+        Chamar Mudança
+    </button> -->
+    
+    <div id="app">
+        {{ nome }}
+        <button v-on:click="imprimir()">
+            Chamar Mudança
+        </button>
+    </div>
+
+    <div id="app1">
+        {{ nome }}
+    </div>
+
+    <script>
+
+        let mensagem = "Minha aplicação"
+        function imprimir(){
+            // mensagem = "Outra informação" Não funciona
+            app.nome = "Outra informação 1" 
+            app1.nome = "Outra informação 2" 
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                nome: `${mensagem} 0`
+            },
+            methods: {
+                imprimir(){
+                // mensagem = "Outra informação" Não funciona
+                app.nome = "Outra informação 1" 
+                app1.nome = "Outra informação 2" 
+        }
+            }
+        })
+
+        //Nova instância
+        const app1 = new Vue({
+            el: '#app1',
+            data: {
+                nome: `${mensagem} 1`
+            }
+        })
+    </script>
+    
+</body>
+</html>
